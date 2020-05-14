@@ -54,9 +54,9 @@ namespace cobit_mq {
     }
 
     export enum Servos {
-        //% blockId="S1" block="S1"
+        //% blockId="S1" block="서보1번"
         S1 = 0,
-        //% blockId="S2" block="S2"
+        //% blockId="S2" block="서보2번"
         S2 = 1
     }
 
@@ -68,9 +68,9 @@ namespace cobit_mq {
     }
 
     export enum Patrol {
-        //% blockId="patrolLeft" block="left"
+        //% blockId="patrolLeft" block="왼쪽"
         PatrolLeft = 13,
-        //% blockId="patrolRight" block="right"
+        //% blockId="patrolRight" block="오른쪽"
         PatrolRight = 14
     }
 
@@ -88,16 +88,16 @@ namespace cobit_mq {
     }
 
     export enum LED {
-        //% blockId="LEDLeft" block="left"
+        //% blockId="LEDLeft" block="왼쪽"
         LEDLeft = 8,
-        //% blockId="LEDRight" block="right"
+        //% blockId="LEDRight" block="오른쪽"
         LEDRight = 12
     }
 
     export enum LEDswitch {
-        //% blockId="turnOn" block="ON"
+        //% blockId="turnOn" block="켜기"
         turnOn = 0x01,
-        //% blockId="turnOff" block="OFF"
+        //% blockId="turnOff" block="끄기"
         turnOff = 0x00
     }
 
@@ -177,6 +177,36 @@ namespace cobit_mq {
     }
 
     /**
+     * Go backward cobit-mq
+     */
+
+    //% weight=90
+    //% blockId=motor_MotorTurnLeft block="모터 왼쪽으로 회전하기 |%speed 속도"
+    //% speed.min=0 speed.max=255
+    export function motorTurnLeft(speed: number): void {
+        let buf = pins.createBuffer(3);
+        buf[0] = 0x00;
+        buf[1] = Dir.CW;
+        buf[2] = speed;
+        pins.i2cWriteBuffer(0x10, buf);
+    }
+
+    /**
+     * Go backward cobit-mq
+     */
+
+    //% weight=90
+    //% blockId=motor_MotorTurnRight block="모터 오른쪽으로 회전하기 |%speed 속도"
+    //% speed.min=0 speed.max=255
+    export function motorTurnRight(speed: number): void {
+        let buf = pins.createBuffer(3);
+        buf[0] = 0x02;
+        buf[1] = Dir.CW;
+        buf[2] = speed;
+        pins.i2cWriteBuffer(0x10, buf);
+    }
+
+    /**
      * Stop cobit-mq.
      */
     //% weight=20
@@ -213,7 +243,7 @@ namespace cobit_mq {
      */
 
     //% weight=20
-    //% blockId=writeLED block="LEDlight |%led turn |%ledswitch"
+    //% blockId=writeLED block="LED |%led|를 |%ledswitch"
     //% led.fieldEditor="gridpicker" led.fieldOptions.columns=2 
     //% ledswitch.fieldEditor="gridpicker" ledswitch.fieldOptions.columns=2
     export function writeLED(led: LED, ledswitch: LEDswitch): void {
@@ -231,7 +261,7 @@ namespace cobit_mq {
      */
 
     //% weight=90
-    //% blockId=servo_ServoRun block="servo|%index|angle|%angle"
+    //% blockId=servo_ServoRun block="서보모터 |%index|를 |%angle|도로 회전하기"
     //% angle.min=0 angle.max=180
     //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
     export function servoRun(index: Servos, angle: number): void {
