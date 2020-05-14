@@ -196,7 +196,7 @@ namespace cobit_mq {
      */
 
     //% weight=20
-    //% blockId=read_Patrol block="read |%patrol line tracking sensor"
+    //% blockId=read_Patrol block="라인센서 |%patrol 번 읽기"
     //% patrol.fieldEditor="gridpicker" patrol.fieldOptions.columns=2 
     export function readPatrol(patrol: Patrol): number {
         if (patrol == Patrol.PatrolLeft) {
