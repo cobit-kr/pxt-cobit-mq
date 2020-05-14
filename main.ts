@@ -174,11 +174,11 @@ namespace cobit_mq {
     }
 
     /**
-     * Set the direction and speed of Maqueen motor.
+     * Go forward cobit-mq.
      */
 
     //% weight=90
-    //% blockId=motor_MotorForward block="at speed|%speed"
+    //% blockId=motor_MotorForward block="모터 앞으로 가기 |%speed 속도"
     //% speed.min=0 speed.max=255
     export function motorForward(speed: number): void {
         let buf = pins.createBuffer(3);
@@ -191,35 +191,35 @@ namespace cobit_mq {
     }
 
     /**
-     * Stop the Maqueen motor.
+     * Go backward cobit-mq
+     */
+
+    //% weight=90
+    //% blockId=motor_MotorBackward block="모터 뒤로 가기 |%speed 속도"
+    //% speed.min=0 speed.max=255
+    export function motorBackward(speed: number): void {
+        let buf = pins.createBuffer(3);
+        buf[0] = 0x00;
+        buf[1] = Dir.CCW;
+        buf[2] = speed;
+        pins.i2cWriteBuffer(0x10, buf);
+        buf[0] = 0x02;
+        pins.i2cWriteBuffer(0x10, buf);
+    }
+
+    /**
+     * Stop cobit-mq.
      */
     //% weight=20
-    //% blockId=motor_motorStop block="motor |%motors stop"
-    //% motors.fieldEditor="gridpicker" motors.fieldOptions.columns=2 
-    export function motorStop(motors: Motors): void {
+    //% blockId=motor_motorStop block="모터 멈추기"
+    export function motorStop(): void {
         let buf = pins.createBuffer(3);
-        if (motors == 0) {
-            buf[0] = 0x00;
-            buf[1] = 0;
-            buf[2] = 0;
-            pins.i2cWriteBuffer(0x10, buf);
-        }
-        if (motors == 1) {
-            buf[0] = 0x02;
-            buf[1] = 0;
-            buf[2] = 0;
-            pins.i2cWriteBuffer(0x10, buf);
-        }
-
-        if (motors == 2) {
-            buf[0] = 0x00;
-            buf[1] = 0;
-            buf[2] = 0;
-            pins.i2cWriteBuffer(0x10, buf);
-            buf[0] = 0x02;
-            pins.i2cWriteBuffer(0x10, buf);
-        }
-
+        buf[0] = 0x00;
+        buf[1] = 0;
+        buf[2] = 0;
+        pins.i2cWriteBuffer(0x10, buf);
+        buf[0] = 0x02;
+        pins.i2cWriteBuffer(0x10, buf);
     }
 
     /**
