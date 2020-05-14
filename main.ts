@@ -178,32 +178,16 @@ namespace cobit_mq {
      */
 
     //% weight=90
-    //% blockId=motor_MotorRun block="motor|%index|move|%Dir|at speed|%speed"
+    //% blockId=motor_MotorForward block="at speed|%speed"
     //% speed.min=0 speed.max=255
-    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=2
-    //% direction.fieldEditor="gridpicker" direction.fieldOptions.columns=2
-    export function motorRun(index: Motors, direction: Dir, speed: number): void {
+    export function motorForward(speed: number): void {
         let buf = pins.createBuffer(3);
-        if (index == 0) {
-            buf[0] = 0x00;
-            buf[1] = direction;
-            buf[2] = speed;
-            pins.i2cWriteBuffer(0x10, buf);
-        }
-        if (index == 1) {
-            buf[0] = 0x02;
-            buf[1] = direction;
-            buf[2] = speed;
-            pins.i2cWriteBuffer(0x10, buf);
-        }
-        if (index == 2) {
-            buf[0] = 0x00;
-            buf[1] = direction;
-            buf[2] = speed;
-            pins.i2cWriteBuffer(0x10, buf);
-            buf[0] = 0x02;
-            pins.i2cWriteBuffer(0x10, buf);
-        }
+        buf[0] = 0x00;
+        buf[1] = Dir.CW;
+        buf[2] = speed;
+        pins.i2cWriteBuffer(0x10, buf);
+        buf[0] = 0x02;
+        pins.i2cWriteBuffer(0x10, buf);
     }
 
     /**
