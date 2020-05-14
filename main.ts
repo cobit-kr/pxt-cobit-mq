@@ -85,7 +85,7 @@ namespace cobit_mq {
         High = 0x01,
         //% block="낮음(low)"
         Low = 0x00
-    }
+    } 
 
     export enum LED {
         //% blockId="LEDLeft" block="왼쪽"
