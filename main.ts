@@ -75,15 +75,15 @@ namespace cobit_mq {
     }
 
     export enum Patrol1 {
-        //% blockId="patrolLeft" block="left"
+        //% blockId="patrolLeft" block="왼쪽"
         PatrolLeft = 0x10,
-        //% blockId="patrolRight" block="right"
+        //% blockId="patrolRight" block="오른쪽"
         PatrolRight = 0x20
     }
     export enum Voltage {
-        //%block="high"
+        //%block="높음(high)"
         High = 0x01,
-        //% block="low"
+        //% block="낮음(low)"
         Low = 0x00
     }
 
@@ -280,7 +280,7 @@ namespace cobit_mq {
     * Line tracking sensor event function
     */
     //% weight=2
-    //% blockId=kb_event block="on|%value line tracking sensor|%vi"
+    //% blockId=kb_event block="|%value|쪽 라인센서 출력이 |%vi|이면"
     export function ltEvent(value: Patrol1, vi: Voltage, a: Action) {
         let state = value + vi;
         serial.writeNumber(state)
