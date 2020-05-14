@@ -113,42 +113,11 @@ namespace cobit_mq {
         alreadyInit = 1
     }
 
-
-    /**
-     * Read IR sensor value.
-     */
-
-    //% weight=10
-    //% blockId=IR_read block="read IR key value"
-    export function IR_read(): number {
-        maqueenInit()
-        return getParam()
-    }
-
-    /**
-     * Read the version number.
-     */
-
-    //% weight=10
-    //% blockId=IR_read_version block="get product information"
-    export function IR_read_version(): string {
-        maqueenInit()
-        pins.i2cWriteNumber(0x10, 50, NumberFormat.UInt8BE);
-        let dataLen = pins.i2cReadNumber(0x10, NumberFormat.UInt8BE);
-        pins.i2cWriteNumber(0x10, 51, NumberFormat.UInt8BE);
-        let buf = pins.i2cReadBuffer(0x10, dataLen, false);
-        let version = "";
-        for (let index = 0; index < dataLen; index++) {
-            version += String.fromCharCode(buf[index])
-        }
-        return version
-    }
-
     /**
      * Read ultrasonic sensor.
      */
 
-    //% blockId=ultrasonic_sensor block="read ultrasonic sensor |%unit "
+    //% blockId=ultrasonic_sensor block="초음파 센서 읽기 |%unit "
     //% weight=95
     export function Ultrasonic(unit: PingUnit, maxCmDistance = 500): number {
         let d
