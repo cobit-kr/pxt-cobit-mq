@@ -285,7 +285,7 @@ namespace cobit_mq {
         let state = value + vi;
         serial.writeNumber(state)
         let item: KV = { key: state, action: a };
-        kbCallback.push(item);
+        kbCallback.push(item); 
     }
     let x: number
     let i: number = 1;
