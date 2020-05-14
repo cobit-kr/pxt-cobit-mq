@@ -226,7 +226,7 @@ namespace cobit_mq {
      */
 
     //% weight=20
-    //% blockId=read_Patrol block="라인센서 |%patrol 번 읽기"
+    //% blockId=read_Patrol block="라인센서 |%patrol|쪽 센서 읽기"
     //% patrol.fieldEditor="gridpicker" patrol.fieldOptions.columns=2 
     export function readPatrol(patrol: Patrol): number {
         if (patrol == Patrol.PatrolLeft) {
@@ -243,7 +243,7 @@ namespace cobit_mq {
      */
 
     //% weight=20
-    //% blockId=writeLED block="LED |%led|를 |%ledswitch"
+    //% blockId=writeLED block="LED |%led|을 |%ledswitch"
     //% led.fieldEditor="gridpicker" led.fieldOptions.columns=2 
     //% ledswitch.fieldEditor="gridpicker" ledswitch.fieldOptions.columns=2
     export function writeLED(led: LED, ledswitch: LEDswitch): void {
