@@ -280,7 +280,7 @@ namespace cobit_mq {
     * Line tracking sensor event function
     */
     //% weight=2
-    //% blockId=kb_event block="라인센서 |%value|쪽 센서 출력이 |%vi|이면"
+    //% blockId=kb_event block="라인센서 |%value 센서 출력이 |%vi 이면"
     export function ltEvent(value: Patrol1, vi: Voltage, a: Action) {
         let state = value + vi;
         serial.writeNumber(state)
