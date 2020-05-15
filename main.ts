@@ -151,6 +151,14 @@ namespace cobit_mq {
     //% speed.min=0 speed.max=255
     export function motorForward(speed: number): void {
         let buf = pins.createBuffer(3);
+
+        buf[0] = 0x00;
+        buf[1] = 0;
+        buf[2] = 0;
+        pins.i2cWriteBuffer(0x10, buf);
+        buf[0] = 0x02;
+        pins.i2cWriteBuffer(0x10, buf);
+
         buf[0] = 0x00;
         buf[1] = Dir.CW;
         buf[2] = speed;
@@ -168,6 +176,14 @@ namespace cobit_mq {
     //% speed.min=0 speed.max=255
     export function motorBackward(speed: number): void {
         let buf = pins.createBuffer(3);
+
+        buf[0] = 0x00;
+        buf[1] = 0;
+        buf[2] = 0;
+        pins.i2cWriteBuffer(0x10, buf);
+        buf[0] = 0x02;
+        pins.i2cWriteBuffer(0x10, buf);
+
         buf[0] = 0x00;
         buf[1] = Dir.CCW;
         buf[2] = speed;
@@ -185,6 +201,14 @@ namespace cobit_mq {
     //% speed.min=0 speed.max=255
     export function motorTurnLeft(speed: number): void {
         let buf = pins.createBuffer(3);
+
+        buf[0] = 0x00;
+        buf[1] = 0;
+        buf[2] = 0;
+        pins.i2cWriteBuffer(0x10, buf);
+        buf[0] = 0x02;
+        pins.i2cWriteBuffer(0x10, buf);
+
         buf[0] = 0x00;
         buf[1] = Dir.CW;
         buf[2] = speed;
@@ -200,6 +224,14 @@ namespace cobit_mq {
     //% speed.min=0 speed.max=255
     export function motorTurnRight(speed: number): void {
         let buf = pins.createBuffer(3);
+        
+        buf[0] = 0x00;
+        buf[1] = 0;
+        buf[2] = 0;
+        pins.i2cWriteBuffer(0x10, buf);
+        buf[0] = 0x02;
+        pins.i2cWriteBuffer(0x10, buf);
+
         buf[0] = 0x02;
         buf[1] = Dir.CW;
         buf[2] = speed;
